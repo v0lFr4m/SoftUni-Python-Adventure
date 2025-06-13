@@ -1,19 +1,23 @@
-distance_of_the_pokemon = list(map(int, input().split()))
-
-
-while len(distance_of_the_pokemon) > 0:
+sequence_of_numbers = list(map(int , input().split()))
+sum_of_removed_elements = 0
+while len(sequence_of_numbers) != 0:
     index_input = int(input())
-    for i in range(len(distance_of_the_pokemon)):
-        current = distance_of_the_pokemon[i]
-        if index_input == i:
-            distance_of_the_pokemon.pop(index_input)
-            if i <= current:
-                increase = [i + current for i in range(len(distance_of_the_pokemon))]
-            else:
-                distance_of_the_pokemon += current
+    number = 0
+    if 0 <= index_input < len(sequence_of_numbers):
+        number = sequence_of_numbers.pop(index_input)
+    elif 0 > index_input:
+        num_to_add = sequence_of_numbers[-1]
+        number = sequence_of_numbers[0]
+        sequence_of_numbers[0] = sequence_of_numbers[-1]
+    else:
+        num_to_add = sequence_of_numbers[0]
+        number = sequence_of_numbers[-1]
+        sequence_of_numbers[-1] = sequence_of_numbers[0]
+    sum_of_removed_elements += number
 
-            distance_of_the_pokemon[index_input] -= current
-
-
-
-
+    for current_index, current_num in enumerate(sequence_of_numbers):
+        if current_num <= number:
+            sequence_of_numbers[current_index] += number
+        else:
+            sequence_of_numbers[current_index] -= number
+print(sum_of_removed_elements)
