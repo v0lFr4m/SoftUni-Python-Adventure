@@ -61,3 +61,6 @@ while (user_command := input()) != 'Stop':
 
 for car_model, car_info in cars.items():
     print(f"{car_model} -> Mileage: {car_info['mileage']} kms, Fuel in the tank: {car_info['fuel']} lt.")
+
+
+
